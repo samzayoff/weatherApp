@@ -7,7 +7,8 @@
 
 body {
     min-height: 100vh;
-    overflow: hidden;
+    padding-top: 20px;
+    overflow: scroll;
     position: relative;
     background: linear-gradient(-45deg, #070101, #000000, #cccccc);
     background-size: 400% 400%;
