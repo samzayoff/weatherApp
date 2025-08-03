@@ -1,14 +1,14 @@
 * {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     min-height: 100vh;
-    padding-top: 20px;
-    overflow: scroll;
+    padding: 20px 10px;
+    overflow-x: hidden;
     position: relative;
     background: linear-gradient(-45deg, #070101, #000000, #cccccc);
     background-size: 400% 400%;
@@ -16,22 +16,14 @@ body {
 }
 
 @keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* Floating Bubbles Background */
+/* Floating Bubbles */
 .bubbles {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: -1;
@@ -46,99 +38,38 @@ body {
     background: rgba(90, 94, 39, 0.104);
     border-radius: 50%;
     animation: rise 15s infinite ease-in;
+    opacity: 0.7;
 }
 
-.bubble:nth-child(1) {
-    width: 40px;
-    height: 40px;
-    left: 10%;
-    animation-duration: 8s;
-}
-
-.bubble:nth-child(2) {
-    width: 20px;
-    height: 20px;
-    left: 20%;
-    animation-duration: 5s;
-    animation-delay: 1s;
-}
-
-.bubble:nth-child(3) {
-    width: 50px;
-    height: 50px;
-    left: 35%;
-    animation-duration: 7s;
-    animation-delay: 2s;
-}
-
-.bubble:nth-child(4) {
-    width: 80px;
-    height: 80px;
-    left: 50%;
-    animation-duration: 11s;
-    animation-delay: 0s;
-}
-
-.bubble:nth-child(5) {
-    width: 35px;
-    height: 35px;
-    left: 55%;
-    animation-duration: 6s;
-    animation-delay: 1s;
-}
-
-.bubble:nth-child(6) {
-    width: 45px;
-    height: 45px;
-    left: 65%;
-    animation-duration: 8s;
-    animation-delay: 3s;
-}
-
-.bubble:nth-child(7) {
-    width: 25px;
-    height: 25px;
-    left: 75%;
-    animation-duration: 7s;
-    animation-delay: 2s;
-}
-
-.bubble:nth-child(8) {
-    width: 80px;
-    height: 80px;
-    left: 80%;
-    animation-duration: 6s;
-    animation-delay: 1s;
-}
+/* Responsive bubble sizes */
+.bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+.bubble:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+.bubble:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 7s; animation-delay: 2s; }
+.bubble:nth-child(4) { width: 80px; height: 80px; left: 50%; animation-duration: 11s; animation-delay: 0s; }
+.bubble:nth-child(5) { width: 35px; height: 35px; left: 55%; animation-duration: 6s; animation-delay: 1s; }
+.bubble:nth-child(6) { width: 45px; height: 45px; left: 65%; animation-duration: 8s; animation-delay: 3s; }
+.bubble:nth-child(7) { width: 25px; height: 25px; left: 75%; animation-duration: 7s; animation-delay: 2s; }
+.bubble:nth-child(8) { width: 80px; height: 80px; left: 80%; animation-duration: 6s; animation-delay: 1s; }
 
 @keyframes rise {
-    0% {
-        bottom: -100px;
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(100px);
-    }
-
-    100% {
-        bottom: 1080px;
-        transform: translateX(-200px);
-    }
+    0% { bottom: -100px; transform: translateX(0); }
+    50% { transform: translateX(100px); }
+    100% { bottom: 100vh; transform: translateX(-200px); }
 }
 
+/* Main Card */
 .card {
-    width: 90%;
+    width: 95%;
     max-width: 470px;
     background: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: #fff;
-    margin: 100px auto 0;
+    margin: 50px auto 20px;
     border-radius: 20px;
-    padding: 40px 35px;
+    padding: 30px 25px;
     text-align: center;
-    box-shadow: 0 15px 30px rgba(78, 28, 28, 0.89);
+    box-shadow: 0 15px 30px rgba(78, 28, 28, 0.3);
     border: 1px solid rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
@@ -147,12 +78,15 @@ body {
     transform: translateY(-5px);
 }
 
+/* Search Bar */
+/* Update your existing search styles */
 .search {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    gap: 10px; /* Add gap for better spacing */
 }
 
 .search input {
@@ -160,18 +94,12 @@ body {
     outline: 0;
     background: rgba(255, 255, 255, 0.8);
     color: #333;
-    padding: 15px 25px;
+    padding: 12px 20px; /* Slightly reduced padding for mobile */
     border-radius: 30px;
     flex: 1;
-    margin-right: 16px;
-    font-size: 18px;
-    transition: all 0.3s ease;
+    min-width: 0; /* Crucial fix for mobile overflow */
+    font-size: 16px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.search input:focus {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .search button {
@@ -179,76 +107,97 @@ body {
     outline: 0;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 50px; /* Slightly smaller for mobile */
+    height: 50px;
+    flex-shrink: 0; /* Prevents button from shrinking */
     cursor: pointer;
-    transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.search button:hover {
-    background: #00feba;
-    transform: scale(1.05);
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+    .search {
+        flex-wrap: nowrap; /* Prevent wrapping */
+    }
+    
+    .search input {
+        padding: 10px 15px; /* Smaller padding */
+        font-size: 14px;
+    }
+    
+    .search button {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .search button img {
+        width: 14px; /* Smaller icon */
+    }
 }
 
-.search button img {
-    width: 16px;
-}
-
+/* Weather Display */
 .weather-icon {
-    width: 170px;
-    margin-top: 30px;
+    width: 140px;
+    margin-top: 20px;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
 }
 
 .weather h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 500;
     text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .weather h2 {
-    font-size: 45px;
+    font-size: 1.8rem;
     font-weight: 400;
-    margin-top: -10px;
+    margin-top: -5px;
     text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .details {
+
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
-    margin-top: 50px;
+    gap: 40px;
+    padding: 25px 10px;
+    margin-top: 30px;
 }
 
 .col {
     display: flex;
     align-items: center;
     text-align: left;
+    min-width: 120px;
 }
 
 .col img {
-    width: 40px;
+    width: 20px;
     margin-right: 10px;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
 }
 
-.humidity,
-.wind {
-    font-size: 20px;
-    margin-top: -5px;
+.col p{
+    font-size: small;
+}
+
+.humidity, .wind {
+    font-size: 15px;
+    margin-top: -3px;
 }
 
 .weather {
     display: none;
 }
 
+/* Error Message */
 .error-message {
     color: #ff6b6b;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 500;
-    padding: 10px 20px;
+    padding: 8px 16px;
     background: rgba(255, 107, 107, 0.1);
     border-radius: 30px;
     animation: fadeIn 0.3s ease;
@@ -262,13 +211,82 @@ body {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .card {
+        padding: 25px 20px;
+        margin: 30px auto;
+    }
+    
+    .weather-icon {
+        width: 120px;
+    }
+    
+    .weather h1 {
+        font-size: 2rem;
+    }
+    
+    .weather h2 {
+        font-size: 1.5rem;
+    }
+    
+    .col {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px 5px;
+    }
+    
+    .card {
+        padding: 20px 15px;
+        margin: 20px auto;
+        border-radius: 15px;
+    }
+    
+    .weather-icon {
+        width: 100px;
+        margin-top: 15px;
+    }
+    
+    .weather h1 {
+        font-size: 1.8rem;
+    }
+    
+    .weather h2 {
+        font-size: 1.3rem;
+    }
+    
+    .details {
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .col img {
+        width: 30px;
+    }
+    
+    .humidity, .wind {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .weather h1 {
+        font-size: 1.6rem;
+    }
+    
+    .weather h2 {
+        font-size: 1.1rem;
+    }
+    
+    .col {
+        min-width: 80px;
     }
 }
